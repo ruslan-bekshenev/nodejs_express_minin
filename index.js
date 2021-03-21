@@ -34,12 +34,16 @@ app.use('/card', cartRouter)
 const PORT = process.env.PORT || 3000
 
 async function start() {
-  const url = 'mongodb+srv://ruslan:steeki2323@cluster0.zczmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-  await mongoose.connect(url, {useNewUrlParser: true})
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-  }) 
+  try {
+    const url = 'mongodb+srv://ruslan:steeki2323@cluster0.zczmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+    await mongoose.connect(url, {useNewUrlParser: true})
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
+    })
+  } catch (e) {
+    console.log(e)
+  }
+   
 }
 
 start()
-
