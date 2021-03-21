@@ -35,7 +35,7 @@ const PORT = process.env.PORT || 3000
 
 async function start() {
   try {
-    const url = 'mongodb+srv://ruslan:steeki2323@cluster0.zczmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+    const url = 'mongodb+srv://ruslan:steeki2323@cluster0.zczmu.mongodb.net/shop'
     await mongoose.connect(url, {useNewUrlParser: true})
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`)
