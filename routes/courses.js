@@ -36,7 +36,6 @@ router.get('/:id/edit', async (req, res) => {
 
 router.post('/edit', async (req, res) => {
   const { _id } = req.body
-  console.log('req.body', _id, req.body)
   delete req.body._id
   await Course.findByIdAndUpdate(_id, req.body)
   res.redirect('/courses')
