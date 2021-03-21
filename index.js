@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
@@ -14,6 +15,7 @@ const hbs = exphbs.create({
   // расширение
   extname: 'hbs',
 })
+
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
@@ -31,6 +33,13 @@ app.use('/card', cartRouter)
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-}) 
+async function start() {
+  const url = 'mongodb+srv://ruslan:steeki2323@cluster0.zczmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+  await mongoose.connect(url, {useNewUrlParser: true})
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+  }) 
+}
+
+start()
+
